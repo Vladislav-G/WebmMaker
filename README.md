@@ -8,6 +8,8 @@
 
 A simple tool that makes the highest quality webms given a filesize limit. Uses ffmpeg for conversion.
 
+In a bit more detail, it makes use of variable bitrates to maintain a fixed level of quality, steadily dropping it up to a threshold. When that quality limit is reached and the filesize is still too high, the resolution is scaled down and the process repeats until the filesize limit has been reached.
+
 ### How to use it
 
 Download the latest version, extract anywhere and run `Webm Maker.exe`, the rest should be obvious.
