@@ -38,7 +38,10 @@ namespace Webm_Maker
         double resolution = 1;
         double filesizelimit;
         string audio;
-        ArrayList processes = new ArrayList();
+        bool showconsole;
+
+        FileStream fs;
+        Process p;
 
         public MainWindow()
         {
@@ -60,6 +63,7 @@ namespace Webm_Maker
             }
             if(File.Exists(logfile))
             {
+                fs.Close();
                 File.Delete(logfile);
             }
         }
@@ -98,6 +102,7 @@ namespace Webm_Maker
         public void readyText()
         {
             Label.Content = "Ready to convert.";
+            ConvertButton.IsEnabled = true;
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -106,7 +111,7 @@ namespace Webm_Maker
 
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".mp4";
-            dlg.Filter = "MP4 Files (*.mp4)|*.mp4|AVI Files (*.avi)|*.avi|MKV Files (*.mkv)|*.mkv|MOV Files (*.mov)|*.mov";
+            dlg.Filter = "MP4|*.mp4|AVI|*.avi|MKV|*.mkv|MOV|*.mov|FLV|*.flv";
 
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
@@ -145,10 +150,10 @@ namespace Webm_Maker
         {
             ConvertButton.IsEnabled = false;
 
-            ffmpegdir = currentdir + "\\bin";
+            ffmpegdir = currentdir + "\\bin\\ffmpeg.exe";
             filein = Browse_Textbox.Text;
             fileout = Save_Textbox.Text;
-            logfile = ffmpegdir + "\\done.txt";
+            logfile = currentdir + "\\bin\\done.txt";
             filesizelimit = Convert.ToDouble(FilesizeLimit.Text) * 1000000;
 
             // for audio
@@ -159,6 +164,16 @@ namespace Webm_Maker
             else
             {
                 audio = "-an";
+            }
+
+            // for console
+            if ((bool)ConsoleOut.IsChecked)
+            {
+                showconsole = true;
+            }
+            else
+            {
+                showconsole = false;
             }
 
             // delete existing files
@@ -184,20 +199,39 @@ namespace Webm_Maker
 
             this.Dispatcher.Invoke(progressLabel);
 
-            Process p = new Process();
-            processes.Add(p);
+            p = new Process();
 
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.FileName = "cmd.exe";
+            if(showconsole)
+            {
+                p.StartInfo.CreateNoWindow = false;
+            }
+            else
+            {
+                p.StartInfo.CreateNoWindow = true;
+            }
+            p.StartInfo.FileName = ffmpegdir;
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.Arguments = "-i \"" + sourcefile + "\" -vf scale=iw*" + resolution + ":ih*" + resolution + ",colormatrix=bt709:bt601 -pix_fmt yuv420p -threads 8 -qmin 0 -qmax " + qmax + " -c:v vp8 " + audio + " -y \"" + fileout + "\"";
             p.Start();
 
-            p.StandardInput.WriteLine("cd /d " + ffmpegdir);
-            p.StandardInput.WriteLine("ffmpeg -i \"" + sourcefile + "\" -vf scale=iw*" + resolution + ":ih*" + resolution + ",colormatrix=bt709:bt601 -pix_fmt yuv420p -threads 8 -qmin 0 -qmax " + qmax + " -c:v vp8 " + audio + " -y \"" + fileout + "\" 2> done.txt");
-            Thread myThread = new Thread(new ThreadStart(checkFile));
-            myThread.Start();
+            // log stuff
+            Thread logThread = new Thread(new ThreadStart(writeLog));
+            logThread.Start();
+
+            //p.StandardInput.WriteLine("cd /d " + ffmpegdir);
+            //p.StandardInput.WriteLine("ffmpeg -i \"" + sourcefile + "\" -vf scale=iw*" + resolution + ":ih*" + resolution + ",colormatrix=bt709:bt601 -pix_fmt yuv420p -threads 8 -qmin 0 -qmax " + qmax + " -c:v vp8 " + audio + " -y \"" + fileout + "\" 2> done.txt");
+            Thread checkFileThread = new Thread(new ThreadStart(checkFile));
+            checkFileThread.Start();
+        }
+
+        public void writeLog()
+        {
+            Console.WriteLine(p.StandardOutput.ReadToEnd());
+            fs = File.Create(logfile);
+            StreamWriter sw = new StreamWriter(fs);
+            Console.SetOut(sw);
+            fs.Close();
         }
 
         public void progressLabel()
@@ -215,6 +249,7 @@ namespace Webm_Maker
                 if (File.Exists(logfile) && !IsFileLocked(log))
                 {
                     done = true;
+                    fs.Close();
                     File.Delete(logfile);
                 }
                 System.Threading.Thread.Sleep(500);
@@ -236,6 +271,8 @@ namespace Webm_Maker
         {
             Label.Content = "Done!";
             ConvertButton.IsEnabled = true;
+            qmax = 0;
+            resolution = 1;
         }
 
         protected virtual bool IsFileLocked(FileInfo file)

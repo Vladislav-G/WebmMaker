@@ -15,16 +15,20 @@
         <Button x:Name="Save" Content="Browse" Click="Save_Click" HorizontalAlignment="Right" Margin="0,43,10,0" VerticalAlignment="Top" Width="130" Height="25" RenderTransformOrigin="2.074,-0.974"/>
         <TextBox x:Name="Save_Textbox" PreviewMouseDown="Save_Click" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Height="25" Margin="70,43,145,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="Auto"/>
 
-        <Button x:Name="ConvertButton" Content="Convert" Click="Convert_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="162" Height="52"/>
+        <Button x:Name="ConvertButton" IsEnabled="False"  Content="Convert" Click="Convert_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="162" Height="52"/>
         <Label x:Name="Label" Content="Fill in the fields." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Width="332"/>
 
-        <TextBox x:Name="FilesizeLimit" HorizontalAlignment="Left" TextAlignment="Right" VerticalContentAlignment="Center"  Height="25" Margin="98,125,0,0" TextWrapping="NoWrap" Text="3" VerticalAlignment="Top" Width="77"/>
-        <Label Content="Filesize Limit" HorizontalAlignment="Left" Margin="98,99,0,0" VerticalAlignment="Top"/>
-        <Label Content="MB" HorizontalAlignment="Left" Margin="175,124,0,0" VerticalAlignment="Top" Height="25"/>
+        <TextBox x:Name="FilesizeLimit" HorizontalAlignment="Left" TextAlignment="Right" VerticalContentAlignment="Center"  Height="25" Margin="98,113,0,0" TextWrapping="NoWrap" Text="3" VerticalAlignment="Top" Width="77"/>
+        <Label Content="Filesize Limit" HorizontalAlignment="Left" Margin="98,87,0,0" VerticalAlignment="Top"/>
+        <Label Content="MB" HorizontalAlignment="Left" Margin="175,112,0,0" VerticalAlignment="Top" Height="25"/>
 
-        <Label Content="Audio?" HorizontalAlignment="Left" Margin="22,99,0,0" VerticalAlignment="Top" Width="63"/>
-        <RadioButton GroupName="Audio" x:Name="Audio" Content="Yes" HorizontalAlignment="Left" Margin="25,130,0,0" VerticalAlignment="Top"/>
-        <RadioButton GroupName="Audio" Content="No" IsChecked="True" HorizontalAlignment="Left" Margin="25,150,0,0" VerticalAlignment="Top"/>
+        <Label Content="Audio?" HorizontalAlignment="Left" Margin="22,87,0,0" VerticalAlignment="Top" Width="63"/>
+        <RadioButton GroupName="Audio" x:Name="Audio" Content="Yes" HorizontalAlignment="Left" Margin="25,118,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="Audio" Content="No" IsChecked="True" HorizontalAlignment="Left" Margin="25,138,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Show console?" HorizontalAlignment="Left" Margin="388,87,0,0" VerticalAlignment="Top" Width="88"/>
+        <RadioButton GroupName="ShowConsole" x:Name="ConsoleOut" Content="Yes" HorizontalAlignment="Left" Margin="412,118,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="ShowConsole" Content="No" IsChecked="True" HorizontalAlignment="Left" Margin="412,138,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
