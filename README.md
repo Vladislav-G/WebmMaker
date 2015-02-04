@@ -11,3 +11,7 @@ A simple tool that makes the highest quality webms given a filesize limit. Uses 
 ### How to use it
 
 Download the latest version, extract anywhere and run `Webm Maker.exe`, the rest should be obvious.
+
+### Known bugs
+
+Some issues with unusual characters in file/path name. If you think it crashed, check that ffmpeg.exe is still running in task manager, if not then restart the program.
