@@ -112,7 +112,7 @@ namespace Webm_Maker
 
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".mp4";
-            dlg.Filter = "MP4|*.mp4|AVI|*.avi|MKV|*.mkv|MOV|*.mov|FLV|*.flv";
+            dlg.Filter = "Supported Formats|*.mp4;*.avi;*.mkv;*.mov;*.flv;*.gif";
 
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
