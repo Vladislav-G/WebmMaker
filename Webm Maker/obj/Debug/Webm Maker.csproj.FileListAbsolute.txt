@@ -1,0 +1,13 @@
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\bin\Debug\Webm Maker.exe.config
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\MainWindow.baml
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\MainWindow.g.cs
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\App.g.cs
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\Webm Maker_MarkupCompile.cache
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\Webm Maker.g.resources
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\Webm_Maker.Properties.Resources.resources
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\Webm Maker.csproj.GenerateResource.Cache
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\bin\Debug\Webm Maker.exe
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\bin\Debug\Webm Maker.pdb
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\Webm Maker.exe
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\Webm Maker.pdb
+c:\users\vlad\documents\visual studio 2013\Projects\Webm Maker\Webm Maker\obj\Debug\Webm Maker.csprojResolveAssemblyReference.cache

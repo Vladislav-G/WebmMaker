@@ -1,0 +1,30 @@
+﻿<Window x:Class="Webm_Maker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WebM Optimizer" Height="280" Width="530"
+        MinHeight="280" MinWidth="530"
+        Closing="DataWindow_Closing" 
+        WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <Label Content="Input:" HorizontalAlignment="Left" Margin="20,12,0,0" VerticalAlignment="Top"/>
+        <Label Content="Output:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+
+        <Button x:Name="Browse" Content="Browse" Click="Browse_Click" HorizontalAlignment="Right" Margin="0,13,10,0" VerticalAlignment="Top" Width="130" Height="25"/>
+        <TextBox x:Name="Browse_Textbox" PreviewMouseDown="Browse_Click"  VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Height="25" Margin="70,13,145,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="Auto"/>
+
+        <Button x:Name="Save" Content="Browse" Click="Save_Click" HorizontalAlignment="Right" Margin="0,43,10,0" VerticalAlignment="Top" Width="130" Height="25" RenderTransformOrigin="2.074,-0.974"/>
+        <TextBox x:Name="Save_Textbox" PreviewMouseDown="Save_Click" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Height="25" Margin="70,43,145,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="Auto"/>
+
+        <Button x:Name="ConvertButton" Content="Convert" Click="Convert_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="162" Height="52"/>
+        <Label x:Name="Label" Content="Fill in the fields." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Width="332"/>
+
+        <TextBox x:Name="FilesizeLimit" HorizontalAlignment="Left" TextAlignment="Right" VerticalContentAlignment="Center"  Height="25" Margin="98,125,0,0" TextWrapping="NoWrap" Text="3" VerticalAlignment="Top" Width="77"/>
+        <Label Content="Filesize Limit" HorizontalAlignment="Left" Margin="98,99,0,0" VerticalAlignment="Top"/>
+        <Label Content="MB" HorizontalAlignment="Left" Margin="175,124,0,0" VerticalAlignment="Top" Height="25"/>
+
+        <Label Content="Audio?" HorizontalAlignment="Left" Margin="22,99,0,0" VerticalAlignment="Top" Width="63"/>
+        <RadioButton GroupName="Audio" x:Name="Audio" Content="Yes" HorizontalAlignment="Left" Margin="25,130,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="Audio" Content="No" IsChecked="True" HorizontalAlignment="Left" Margin="25,150,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
