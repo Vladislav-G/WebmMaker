@@ -38,6 +38,7 @@ namespace Webm_Maker
         double resolution = 1;
         double filesizelimit;
         string audio;
+        string writelog;
         bool showconsole;
 
         FileStream fs;
@@ -176,6 +177,16 @@ namespace Webm_Maker
                 showconsole = false;
             }
 
+            // for logging
+            if ((bool)WriteLog.IsChecked)
+            {
+                writelog = "-report";
+            }
+            else
+            {
+                writelog = "";
+            }
+
             // delete existing files
             if (File.Exists(fileout))
             {
@@ -212,7 +223,7 @@ namespace Webm_Maker
             p.StartInfo.FileName = ffmpegdir;
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.Arguments = "-i \"" + sourcefile + "\" -vf scale=iw*" + resolution + ":ih*" + resolution + ",colormatrix=bt709:bt601 -pix_fmt yuv420p -threads 8 -qmin 0 -qmax " + qmax + " -c:v vp8 " + audio + " -y \"" + fileout + "\"";
+            p.StartInfo.Arguments = "-i \"" + sourcefile + "\" -vf scale=iw*" + resolution + ":ih*" + resolution + ",colormatrix=bt709:bt601 -pix_fmt yuv420p -threads 8 -qmin 0 -qmax " + qmax + " -c:v vp8 " + audio + " -y \"" + fileout + "\" " + writelog;
             p.Start();
 
             // log stuff
